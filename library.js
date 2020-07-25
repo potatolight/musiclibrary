@@ -22,6 +22,8 @@ const library = {
                     }
              }
 };
+// library.printPlaylists()
+// console.log(library.printTracks())
 
 /////////////////////////////
 // FUNCTIONS TO IMPLEMENT:
@@ -30,6 +32,7 @@ const library = {
 // prints a list of all playlists, in the form:
 // p01: Coding Music - 2 tracks
 // p02: Other Playlist - 1 tracks
+
 const helpPlaylists = function (playlistId) {
        let hplist = library['playlists']
        let output1 = playlistId + ": " + hplist[playlistId]['name'] + ' - ' + hplist[playlistId]['tracks'].length + ' tracks' + '\n'
@@ -43,13 +46,14 @@ const printPlaylists = function() {
    }
   return output2
 }
-console.log(printPlaylists())
+
 
 
 // prints a list of all tracks, using the following format:
 // t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
 // t02: Model View Controller by James Dempsey (WWDC 2003)
 // t03: Four Thirty-Three by John Cage (Woodstock 1952)
+
 const helpPrintTracks = function(tracksId) {
   let tlist = library['tracks']
   let output3 = tracksId+ ': '+tlist[tracksId]['name'] +' by '+ tlist[tracksId]['artist'] +' ('+ tlist[tracksId]['album']+')'+'\n'
@@ -63,7 +67,7 @@ const printTracks = function() {
     }
   return output4
 }
-console.log(printTracks())
+ console.log(printTracks())
 
 // prints a list of tracks for a given playlist, using the following format:
 // p01: Coding Music - 2 tracks
@@ -97,7 +101,7 @@ const generateUid = function() {
 }
 
 
-// adds a track to the library 
+// // adds a track to the library 
 const addTrack = function(name, artist, album) {
      let atlist = {}
      atlist['id'] = generateUid()
@@ -109,7 +113,7 @@ const addTrack = function(name, artist, album) {
 }
 console.log(addTrack('kito', 'Jay', 'Jay'))
 
-// adds a playlist to the library
+// // adds a playlist to the library
 const addPlaylist = function(name) {
   let aplist = {}
   aplist['id'] = generateUid()
