@@ -1,3 +1,5 @@
+// var chai = require('chai');
+
 const library = {
   tracks: { t01: { id: "t01",
                    name: "Code Monkey",
@@ -104,6 +106,10 @@ const generateUid = function() {
 // // adds a track to the library 
 const addTrack = function(name, artist, album) {
      let atlist = {}
+     for(let key in library['tracks'])
+     if(name === library['tracks'][key]['name']){
+       return 'This '+name +" has already been in the list."
+     }
      atlist['id'] = generateUid()
      atlist['name'] = name
      atlist['artist'] = artist 
@@ -111,7 +117,7 @@ const addTrack = function(name, artist, album) {
      library['tracks'][atlist['id']] = atlist
      return library['tracks']
 }
-console.log(addTrack('kito', 'Jay', 'Jay'))
+console.log(addTrack("toto", 'Jay', 'Jay'))
 
 // // adds a playlist to the library
 const addPlaylist = function(name) {
@@ -129,7 +135,32 @@ console.log(addPlaylist('pop'))
 // where the name, artist or album contains the query string (case insensitive)
 // tip: use "string".search("tri") 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/search
+
 const printSearchResults = function(query) {
-  
+  let arr = []
+  let pSearch = library['tracks']
+  for(let key in pSearch){
+    let nameToL = pSearch[key]['name'].toLowerCase()
+    let artistToL = pSearch[key]['artist'].toLowerCase()
+    let albumToL = pSearch[key]['album'].toLowerCase()
+      if(nameToL.search(query) !== -1){
+        arr.push(key)
+      }
+      if(artistToL.search(query) !== -1){
+          arr.push(key)
+      }if(albumToL.search(query) !== -1){
+          arr.push(key)
+      }
+  }
+  for(let i =0 ; i < arr.length; i++){
+    if(arr[i] === arr[i+1]){
+      arr.splice(i+1, 1)
+      i--
+    }
+  }
+  if(arr.length === 0){
+    return 'There is no ID match the given string'
+  } 
+  return arr
 }
-console.log(library.toString())
+console.log(printSearchResults("a"))
